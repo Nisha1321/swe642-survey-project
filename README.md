@@ -1,13 +1,11 @@
-Here it is — just copy everything below:
 
-```markdown
+
+
 # 🎓 SWE 642 – Assignment 3: Campus Visit Survey Application
 
 **George Mason University | SWE 642 – Software Engineering for the World Wide Web**
 **Semester:** Spring 2026
 **Team Members:** Nisha Patel (G01575036) | Disha Yadav
-
----
 
 ## 📌 Project Overview
 
@@ -16,7 +14,7 @@ a campus visit feedback survey. The application supports complete CRUD operation
 users can Create, Read, Update, and Delete survey responses through a modern,
 responsive Angular frontend connected to a Spring Boot REST API backed by MySQL.
 
----
+
 
 ## 🛠️ Tech Stack
 
@@ -31,7 +29,7 @@ responsive Angular frontend connected to a Spring Boot REST API backed by MySQL.
 | Build Tool | Apache Maven | 3.9.14 |
 | Runtime | Node.js | 22.17.0 |
 
----
+
 
 ## 🏗️ Application Architecture
 
