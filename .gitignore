@@ -1,0 +1,15 @@
+# Maven / Spring Boot
+target/
+.mvn/wrapper/maven-wrapper.jar
+
+# Node / Angular
+node_modules/
+dist/
+.env
+*.log
+
+# IDEs
+.idea
+*.iml
+.vscode/
+build/

@@ -1,0 +1,225 @@
+/* Global GMU-themed styles for the survey application */
+:root {
+    --gmu-green: #006633;
+    --gmu-yellow: #FFCC33;
+    --light-gray: #f4f4f4;
+}
+
+body {
+    background-color: var(--light-gray);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Navbar */
+.navbar-custom {
+    background-color: var(--gmu-green);
+    border-bottom: 5px solid var(--gmu-yellow);
+}
+
+.navbar-custom .navbar-brand {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-custom .nav-link {
+    color: #e0e0e0;
+    transition: 0.3s;
+}
+
+.navbar-custom .nav-link:hover {
+    color: var(--gmu-yellow);
+    transform: scale(1.05);
+}
+
+/* Survey Card */
+.survey-card {
+    max-width: 800px;
+    margin: 40px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-top: 10px solid var(--gmu-green);
+    animation: slideIn 0.6s ease-out;
+}
+
+h1,
+h2,
+h4,
+h5 {
+    color: var(--gmu-green);
+}
+
+.sub-text {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.required-star {
+    color: #dc3545;
+    margin-left: 3px;
+    font-weight: bold;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #333;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--gmu-green);
+    box-shadow: 0 0 0 0.25rem rgba(0, 102, 51, 0.25);
+}
+
+.form-check-input:checked {
+    background-color: var(--gmu-green);
+    border-color: var(--gmu-green);
+}
+
+/* Submit Button */
+.btn-submit {
+    background-color: var(--gmu-green);
+    color: white;
+    font-size: 1.1rem;
+    padding: 12px;
+    width: 100%;
+    border: 2px solid var(--gmu-green);
+    font-weight: bold;
+    transition: all 0.3s;
+    border-radius: 5px;
+}
+
+.btn-submit:hover {
+    background-color: white;
+    color: var(--gmu-green);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-cancel {
+    background-color: white;
+    color: #dc3545;
+    font-size: 1.1rem;
+    padding: 12px;
+    width: 100%;
+    border: 2px solid #dc3545;
+    font-weight: bold;
+    transition: all 0.3s;
+    border-radius: 5px;
+}
+
+.btn-cancel:hover {
+    background-color: #dc3545;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Error messages */
+.error-msg {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    background-color: var(--gmu-green);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-top: 5px solid var(--gmu-yellow);
+}
+
+/* Welcome page cards */
+.welcome-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-top: 5px solid var(--gmu-green);
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.welcome-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.welcome-card .card-body {
+    padding: 40px 30px;
+}
+
+.welcome-card .card-icon {
+    font-size: 3rem;
+    color: var(--gmu-green);
+    margin-bottom: 15px;
+}
+
+.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.delay-2 {
+    animation-delay: 0.4s;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, var(--gmu-green), #004d26);
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+    border-bottom: 5px solid var(--gmu-yellow);
+}
+
+.hero-section h1 {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.hero-section p {
+    color: #c8e6c9;
+    font-size: 1.1rem;
+}
+
+/* List table */
+.table thead {
+    background-color: var(--gmu-green);
+    color: white;
+}
+
+.table tbody tr:hover {
+    background-color: #f0f9f4;
+}
