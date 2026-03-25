@@ -29,8 +29,7 @@ public class Survey {
     @NotBlank private String recommendationLikelihood;
     private String additionalComments;
 
-    // ── Getters & Setters ──────────────────────────────────────────
-
+    // Getters & Setters 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

@@ -1,14 +1,14 @@
 // Survey form component supporting both creating and editing a survey.
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';  // ← add RouterLink here
 import { CommonModule } from '@angular/common';
 import { SurveyService } from '../services/survey.service';
 
 @Component({
     selector: 'app-survey-form',
     standalone: true,
-    imports: [ReactiveFormsModule, CommonModule],
+    imports: [ReactiveFormsModule, CommonModule, RouterLink],  // ← add RouterLink here
     templateUrl: './survey-form.component.html'
 })
 export class SurveyFormComponent implements OnInit {

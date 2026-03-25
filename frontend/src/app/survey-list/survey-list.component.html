@@ -1,69 +1,137 @@
-<!-- Displays all submitted surveys in a styled Bootstrap table with Edit and Delete actions. -->
+<!-- Displays all submitted surveys in a wide styled table with creative action buttons. -->
 <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
-    <div class="container">
+    <div class="container-fluid px-4">
         <a class="navbar-brand"><i class="bi bi-mortarboard-fill me-2"></i>GMU Campus Survey</a>
         <a routerLink="/" class="nav-link text-white"><i class="bi bi-house me-1"></i>Back to Home</a>
     </div>
 </nav>
 
-<div class="container my-5">
-    <div class="survey-card">
+<div class="container-fluid px-4 my-5">
+    <div class="survey-card" style="max-width: 100%; width: 100%;">
+
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2><i class="bi bi-table me-2"></i>All Survey Responses</h2>
-            <a routerLink="/survey" class="btn-submit" style="width:auto; padding: 10px 20px; text-decoration:none;">
-                <i class="bi bi-plus-circle me-2"></i>New Survey
+            <h2><i class="bi bi-table me-2"></i>All Survey Responses
+                <span class="badge ms-2" style="background-color: var(--gmu-yellow); color:#000; font-size:0.75rem;">
+                    {{ surveys.length }} Total
+                </span>
+            </h2>
+            <a routerLink="/survey" style="text-decoration:none; background: var(--gmu-green); color:white;
+                padding: 10px 22px; border-radius: 8px; font-weight:600;
+                display:flex; align-items:center; gap:8px; transition: all 0.3s;"
+                onmouseover="this.style.background='#004d26'; this.style.transform='translateY(-2px)'"
+                onmouseout="this.style.background='var(--gmu-green)'; this.style.transform='translateY(0)'">
+                <i class="bi bi-plus-circle-fill"></i> New Survey
             </a>
         </div>
 
         <div class="table-responsive">
-            <table class="table table-hover table-bordered">
+            <table class="table table-hover align-middle" style="min-width: 1000px;">
                 <thead>
-                    <tr>
-                        <th>ID</th>
+                    <tr style="background: linear-gradient(135deg, #006633, #004d26); color:white;">
+                        <th style="border-radius: 8px 0 0 0; padding: 16px;">ID</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Date</th>
                         <th>Recommend</th>
                         <th>Interest</th>
                         <th>Campus Likes</th>
-                        <th>Actions</th>
+                        <th style="border-radius: 0 8px 0 0; text-align:center;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let s of surveys">
-                        <td>{{ s.id }}</td>
-                        <td>{{ s.firstName }} {{ s.lastName }}</td>
-                        <td>{{ s.email }}</td>
-                        <td>{{ s.dateOfSurvey }}</td>
+                    <tr *ngFor="let s of surveys; let i = index"
+                        [style.background]="i % 2 === 0 ? '#ffffff' : '#f8fdf9'">
                         <td>
-                            <span class="badge" [ngStyle]="{
-                  'background-color': s.recommendationLikelihood === 'Very Likely' ? '#006633' :
-                                      s.recommendationLikelihood === 'Likely' ? '#ffc107' : '#dc3545',
-                  'color': s.recommendationLikelihood === 'Likely' ? '#000' : '#fff'
+                            <span style="background:#e8f5e9; color:var(--gmu-green);
+                           padding:4px 10px; border-radius:20px; font-weight:700;">
+                                #{{ s.id }}
+                            </span>
+                        </td>
+                        <td>
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                <div style="width:38px; height:38px; border-radius:50%;
+                            background: linear-gradient(135deg, var(--gmu-green), #4caf50);
+                            display:flex; align-items:center; justify-content:center;
+                            color:white; font-weight:700; font-size:1rem; flex-shrink:0;">
+                                    {{ s.firstName.charAt(0) }}{{ s.lastName.charAt(0) }}
+                                </div>
+                                <div>
+                                    <div style="font-weight:600;">{{ s.firstName }} {{ s.lastName }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="color:#555;">
+                            <i class="bi bi-envelope me-1" style="color:var(--gmu-green);"></i>
+                            {{ s.email }}
+                        </td>
+                        <td>
+                            <i class="bi bi-calendar3 me-1" style="color:var(--gmu-green);"></i>
+                            {{ s.dateOfSurvey }}
+                        </td>
+                        <td>
+                            <span style="padding: 6px 14px; border-radius: 20px; font-weight: 600; font-size:0.85rem;"
+                                [ngStyle]="{
+                  'background': s.recommendationLikelihood === 'Very Likely' ? '#d4edda' :
+                                s.recommendationLikelihood === 'Likely' ? '#fff3cd' : '#f8d7da',
+                  'color': s.recommendationLikelihood === 'Very Likely' ? '#155724' :
+                           s.recommendationLikelihood === 'Likely' ? '#856404' : '#721c24'
                 }">
                                 {{ s.recommendationLikelihood }}
                             </span>
                         </td>
-                        <td>{{ s.interestSource | titlecase }}</td>
-                        <td>{{ s.campusFeatures }}</td>
                         <td>
-                            <a [routerLink]="['/survey/edit', s.id]" class="btn btn-sm btn-outline-success me-2">
-                                <i class="bi bi-pencil"></i> Edit
-                            </a>
-                            <button (click)="deleteSurvey(s.id!)" class="btn btn-sm btn-outline-danger">
-                                <i class="bi bi-trash"></i> Delete
-                            </button>
+                            <span style="background:#e3f2fd; color:#1565c0;
+                           padding:4px 12px; border-radius:20px; font-size:0.85rem;">
+                                <i class="bi bi-broadcast me-1"></i>{{ s.interestSource | titlecase }}
+                            </span>
+                        </td>
+                        <td>
+                            <div style="display:flex; flex-wrap:wrap; gap:4px;">
+                                <span *ngFor="let f of s.campusFeatures?.split(',')" style="background:#f3e5f5; color:#6a1b9a;
+                             padding:3px 10px; border-radius:20px;
+                             font-size:0.78rem; font-weight:500;">
+                                    {{ f | titlecase }}
+                                </span>
+                            </div>
+                        </td>
+                        <td>
+                            <div style="display:flex; gap:8px; justify-content:center;">
+                                <!-- Edit Button -->
+                                <a [routerLink]="['/survey/edit', s.id]" style="display:flex; align-items:center; gap:6px;
+                          background: linear-gradient(135deg, #006633, #4caf50);
+                          color:white; padding:8px 16px; border-radius:8px;
+                          text-decoration:none; font-weight:600; font-size:0.85rem;
+                          box-shadow: 0 3px 8px rgba(0,102,51,0.3);
+                          transition: all 0.3s;"
+                                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 15px rgba(0,102,51,0.4)'"
+                                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 3px 8px rgba(0,102,51,0.3)'">
+                                    <i class="bi bi-pencil-fill"></i> Edit
+                                </a>
+                                <!-- Delete Button -->
+                                <button (click)="deleteSurvey(s.id!)" style="display:flex; align-items:center; gap:6px;
+                               background: linear-gradient(135deg, #c62828, #ef5350);
+                               color:white; padding:8px 16px; border-radius:8px;
+                               border:none; cursor:pointer; font-weight:600; font-size:0.85rem;
+                               box-shadow: 0 3px 8px rgba(198,40,40,0.3);
+                               transition: all 0.3s;"
+                                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 15px rgba(198,40,40,0.4)'"
+                                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 3px 8px rgba(198,40,40,0.3)'">
+                                    <i class="bi bi-trash3-fill"></i> Delete
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <div *ngIf="surveys.length === 0" class="text-center py-5 text-muted">
-            <i class="bi bi-inbox" style="font-size: 3rem; color: var(--gmu-green);"></i>
-            <p class="mt-3">No surveys recorded yet. Be the first to submit!</p>
-            <a routerLink="/survey" class="btn-submit" style="width:auto; padding:10px 20px; text-decoration:none;">
-                <i class="bi bi-pencil me-2"></i>Take Survey
+        <!-- Empty State -->
+        <div *ngIf="surveys.length === 0" class="text-center py-5">
+            <i class="bi bi-inbox" style="font-size:4rem; color:var(--gmu-green); opacity:0.4;"></i>
+            <p class="mt-3 text-muted fs-5">No surveys recorded yet.</p>
+            <a routerLink="/survey" style="text-decoration:none; background:var(--gmu-green); color:white;
+                padding:12px 28px; border-radius:8px; font-weight:600; margin-top:10px; display:inline-block;">
+                <i class="bi bi-pencil me-2"></i>Take First Survey
             </a>
         </div>
 
